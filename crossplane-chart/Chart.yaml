@@ -1,0 +1,11 @@
+apiVersion: v2
+name: mychart
+description: A Helm chart with Crossplane as a dependency
+type: application
+version: 0.1.0
+appVersion: "1.0"
+
+dependencies:
+  - name: crossplane
+    version: "1.18.0"
+    repository: "https://charts.crossplane.io/stable"
