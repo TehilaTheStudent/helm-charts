@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: parent-config
-  namespace: default
-data:
-  key1: value1
