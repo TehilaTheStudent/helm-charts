@@ -2,5 +2,5 @@ crossplane:
   # provider:
   #   packages:
   #     - xpkg.upbound.io/crossplane-contrib/provider-gitlab:v0.13.0
-  customAnnotations: 
-    argocd.argoproj.io/sync-wave: "-1"
+  # customAnnotations: 
+  #   argocd.argoproj.io/sync-wave: "-1"
