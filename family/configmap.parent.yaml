@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: parent-config
+  namespace: default
+  uid: "11111111-1111-1111-1111-111111111111" # normally assigned by Kubernetes
+data:
+  key1: value1
