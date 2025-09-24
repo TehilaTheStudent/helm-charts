@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crossplane-root
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/TehilaTheStudent/helm-charts.git
+    targetRevision: main
+    path: applications/app-of-apps/children-apps  # folder where you store child Application YAMLs
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
