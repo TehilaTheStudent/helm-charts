@@ -7,7 +7,7 @@ metadata:
     - apiVersion: v1
       kind: ConfigMap
       name: parent-config
-      uid: "11111111-1111-1111-1111-111111111111" # must match parent's UID
+      uid: "fe749758-1eeb-441d-8201-ec0064d96c88" # must match parent's UID
       controller: false
       blockOwnerDeletion: true
 data:
