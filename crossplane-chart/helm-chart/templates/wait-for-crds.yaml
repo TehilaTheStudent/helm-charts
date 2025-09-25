@@ -1,70 +1,70 @@
-{{- if .Values.rbac.enabled }}
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: wait-for-crossplane-crds
-  annotations:
-{{- with .Values.rbac.job.customAnnotations }}
-{{ toYaml . | nindent 4 }}
-{{- end }}
-spec:
-  template:
-    spec:
-      serviceAccountName: crossplane-crd-waiter
-      restartPolicy: OnFailure
-      containers:
-      - name: wait-for-crds
-        image: bitnami/kubectl:latest
-        command: ["sh", "-c"]
-        args:
-        - |
-          echo "Waiting for Crossplane CRDs to be available..."
-          while true; do
-            if kubectl get crd providers.pkg.crossplane.io; then
-              echo "Provider CRD found! Crossplane is ready."
-              break
-            else
-              echo "Provider CRD not found, waiting 10 seconds..."
-              sleep 10
-            fi
-          done
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: crossplane-crd-waiter
-  annotations:
-{{- with .Values.rbac.serviceAccount.customAnnotations }}
-{{ toYaml . | nindent 4 }}
-{{- end }}
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: crossplane-crd-waiter
-  annotations:
-{{- with .Values.rbac.clusterRole.customAnnotations }}
-{{ toYaml . | nindent 4 }}
-{{- end }}
-rules:
-- apiGroups: ["apiextensions.k8s.io"]
-  resources: ["customresourcedefinitions"]
-  verbs: ["get", "list"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: crossplane-crd-waiter
-  annotations:
-{{- with .Values.rbac.clusterRoleBinding.customAnnotations }}
-{{ toYaml . | nindent 4 }}
-{{- end }}
-subjects:
-- kind: ServiceAccount
-  name: crossplane-crd-waiter
-  namespace: crossplane-system
-roleRef:
-  kind: ClusterRole
-  name: crossplane-crd-waiter
-  apiGroup: rbac.authorization.k8s.io
-{{- end }}
+# {{- if .Values.rbac.enabled }}
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: wait-for-crossplane-crds
+#   annotations:
+# {{- with .Values.rbac.job.customAnnotations }}
+# {{ toYaml . | nindent 4 }}
+# {{- end }}
+# spec:
+#   template:
+#     spec:
+#       serviceAccountName: crossplane-crd-waiter
+#       restartPolicy: OnFailure
+#       containers:
+#       - name: wait-for-crds
+#         image: bitnami/kubectl:latest
+#         command: ["sh", "-c"]
+#         args:
+#         - |
+#           echo "Waiting for Crossplane CRDs to be available..."
+#           while true; do
+#             if kubectl get crd providers.pkg.crossplane.io; then
+#               echo "Provider CRD found! Crossplane is ready."
+#               break
+#             else
+#               echo "Provider CRD not found, waiting 10 seconds..."
+#               sleep 10
+#             fi
+#           done
+# ---
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   name: crossplane-crd-waiter
+#   annotations:
+# {{- with .Values.rbac.serviceAccount.customAnnotations }}
+# {{ toYaml . | nindent 4 }}
+# {{- end }}
+# ---
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: ClusterRole
+# metadata:
+#   name: crossplane-crd-waiter
+#   annotations:
+# {{- with .Values.rbac.clusterRole.customAnnotations }}
+# {{ toYaml . | nindent 4 }}
+# {{- end }}
+# rules:
+# - apiGroups: ["apiextensions.k8s.io"]
+#   resources: ["customresourcedefinitions"]
+#   verbs: ["get", "list"]
+# ---
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: ClusterRoleBinding
+# metadata:
+#   name: crossplane-crd-waiter
+#   annotations:
+# {{- with .Values.rbac.clusterRoleBinding.customAnnotations }}
+# {{ toYaml . | nindent 4 }}
+# {{- end }}
+# subjects:
+# - kind: ServiceAccount
+#   name: crossplane-crd-waiter
+#   namespace: crossplane-system
+# roleRef:
+#   kind: ClusterRole
+#   name: crossplane-crd-waiter
+#   apiGroup: rbac.authorization.k8s.io
+# {{- end }}
