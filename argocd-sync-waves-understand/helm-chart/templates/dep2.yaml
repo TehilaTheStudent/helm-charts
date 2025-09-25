@@ -15,14 +15,20 @@ spec:
         app: dep2
     spec:
       containers:
-      - name: nginx
+      - name: kubectl-waiter
         image: {{ .Values.dep2.image }}
-        ports:
-        - containerPort: 80
-# this deployment cheks if dep1 exists in cluster
-        startupProbe:
-            exec:
-                command: ["kubectl", "get", "deployment", "dep1"]
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            failureThreshold: 1
+        command: ["sh", "-c"]
+        args:
+        - |
+          echo "Waiting for dep1 deployment to exist..."
+          while true; do
+            if kubectl get deployment dep1 --ignore-not-found; then
+              echo "dep1 deployment found! Starting main container..."
+              break
+            else
+              echo "dep1 deployment not found, waiting 5 seconds..."
+              sleep 5
+            fi
+          done
+          # Keep container running
+          tail -f /dev/null
