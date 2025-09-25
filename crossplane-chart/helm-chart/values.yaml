@@ -8,3 +8,17 @@ crossplane:
   serviceAccount:  
     customAnnotations: 
       argocd.argoproj.io/sync-wave: "1"
+
+rbac:
+  job:
+    customAnnotations: 
+      argocd.argoproj.io/sync-wave: "3"
+  serviceAccount:
+    customAnnotations: 
+      argocd.argoproj.io/sync-wave: "3"
+  clusterRole:
+    customAnnotations: 
+      argocd.argoproj.io/sync-wave: "3"
+  clusterRoleBinding:
+    customAnnotations: 
+      argocd.argoproj.io/sync-wave: "3"
