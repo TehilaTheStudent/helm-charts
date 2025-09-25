@@ -4,8 +4,8 @@ metadata:
   name: dep2
   labels:
     app: dep2
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"      
+  # annotations:
+  #   argocd.argoproj.io/sync-wave: "2"      
 spec:
   replicas: 1
   selector:
