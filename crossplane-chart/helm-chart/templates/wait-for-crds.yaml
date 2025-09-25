@@ -1,31 +1,31 @@
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: wait-for-crossplane-crds
-  annotations:
-    {{- .Values.rbac.job.customAnnotations | nindent 4 }}
-    argocd.argoproj.io/hook: Sync
-spec:
-  template:
-    spec:
-      serviceAccountName: crossplane-crd-waiter
-      restartPolicy: OnFailure
-      containers:
-      - name: wait-for-crds
-        image: bitnami/kubectl:latest
-        command: ["sh", "-c"]
-        args:
-        - |
-          echo "Waiting for Crossplane CRDs to be available..."
-          while true; do
-            if kubectl get crd providers.pkg.crossplane.io; then
-              echo "Provider CRD found! Crossplane is ready."
-              break
-            else
-              echo "Provider CRD not found, waiting 10 seconds..."
-              sleep 10
-            fi
-          done
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: wait-for-crossplane-crds
+#   annotations:
+#     {{- .Values.rbac.job.customAnnotations | nindent 4 }}
+#     argocd.argoproj.io/hook: Sync
+# spec:
+#   template:
+#     spec:
+#       serviceAccountName: crossplane-crd-waiter
+#       restartPolicy: OnFailure
+#       containers:
+#       - name: wait-for-crds
+#         image: bitnami/kubectl:latest
+#         command: ["sh", "-c"]
+#         args:
+#         - |
+#           echo "Waiting for Crossplane CRDs to be available..."
+#           while true; do
+#             if kubectl get crd providers.pkg.crossplane.io; then
+#               echo "Provider CRD found! Crossplane is ready."
+#               break
+#             else
+#               echo "Provider CRD not found, waiting 10 seconds..."
+#               sleep 10
+#             fi
+#           done
 ---
 apiVersion: v1
 kind: ServiceAccount
