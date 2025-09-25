@@ -3,7 +3,7 @@
 # metadata:
 #   name: wait-for-crossplane-crds
 #   annotations:
-#     {{- .Values.rbac.job.customAnnotations | nindent 4 }}
+#     # {{ .Values.rbac.job.customAnnotations | nindent 10 }}
 #     argocd.argoproj.io/hook: Sync
 # spec:
 #   template:
@@ -32,14 +32,14 @@
 # metadata:
 #   name: crossplane-crd-waiter
 #   annotations:
-#     {{- .Values.rbac.serviceAccount.customAnnotations | nindent 4 }}
+#     {{ .Values.rbac.serviceAccount.customAnnotations | nindent 4 }}
 # ---
 # apiVersion: rbac.authorization.k8s.io/v1
 # kind: ClusterRole
 # metadata:
 #   name: crossplane-crd-waiter
 #   annotations:
-#     {{- .Values.rbac.clusterRole.customAnnotations | nindent 4 }}
+#     {{ .Values.rbac.clusterRole.customAnnotations | nindent 4 }}
 # rules:
 # - apiGroups: ["apiextensions.k8s.io"]
 #   resources: ["customresourcedefinitions"]
@@ -50,7 +50,7 @@
 # metadata:
 #   name: crossplane-crd-waiter
 #   annotations:
-#     {{- .Values.rbac.clusterRoleBinding.customAnnotations | nindent 4 }}
+#     {{ .Values.rbac.clusterRoleBinding.customAnnotations | nindent 4 }}
 # subjects:
 # - kind: ServiceAccount
 #   name: crossplane-crd-waiter
