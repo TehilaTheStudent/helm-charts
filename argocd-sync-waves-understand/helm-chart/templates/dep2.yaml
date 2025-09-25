@@ -30,22 +30,19 @@ spec:
               kubectl get deployment dep1 
           initialDelaySeconds: 5
           periodSeconds: 5
-          failureThreshold: 60
+          failureThreshold: 1
           timeoutSeconds: 10
 {{- else }}
         command: ["sh", "-c"]
         args:
         - |
-          echo "Waiting for dep1 deployment to exist..."
-          while true; do
-            if kubectl get deployment dep1; then
-              echo "dep1 deployment found! Starting main container..."
-              break
-            else
-              echo "dep1 deployment not found, waiting 5 seconds..."
-              sleep 5
-            fi
-          done
-          # Keep container running
-          tail -f /dev/null
+          echo "Checking if dep1 deployment exists..."
+          if kubectl get deployment dep1; then
+            echo "dep1 deployment found! Starting main container..."
+            # Keep container running
+            tail -f /dev/null
+          else
+            echo "dep1 deployment not found, exiting..."
+            exit 1
+          fi
 {{- end }}
