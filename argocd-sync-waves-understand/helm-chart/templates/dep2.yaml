@@ -27,7 +27,7 @@ spec:
             - -c
             - |
               echo "Checking if dep1 deployment exists..."
-              kubectl get deployment dep1 --ignore-not-found
+              kubectl get deployment dep1 
           initialDelaySeconds: 5
           periodSeconds: 5
           failureThreshold: 60
@@ -38,7 +38,7 @@ spec:
         - |
           echo "Waiting for dep1 deployment to exist..."
           while true; do
-            if kubectl get deployment dep1 --ignore-not-found; then
+            if kubectl get deployment dep1; then
               echo "dep1 deployment found! Starting main container..."
               break
             else
