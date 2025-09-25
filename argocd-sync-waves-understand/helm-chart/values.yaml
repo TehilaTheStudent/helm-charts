@@ -3,4 +3,5 @@ dep1:
   image: nginx:1.21
 dep2:
   image: bitnami/kubectl:latest
+  useStartupProbe: true  # Set to false to use regular command instead
 
