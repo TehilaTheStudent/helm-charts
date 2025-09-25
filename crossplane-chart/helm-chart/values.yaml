@@ -14,15 +14,15 @@ rbac:
     customAnnotations: 
       argocd.argoproj.io/hook: Sync
       argocd.argoproj.io/sync-wave: "3"
-  serviceAccount:
-    customAnnotations: 
-      argocd.argoproj.io/sync-wave: "3"
-  clusterRole:
-    customAnnotations: 
-      argocd.argoproj.io/sync-wave: "3"
-  clusterRoleBinding:
-    customAnnotations: 
-      argocd.argoproj.io/sync-wave: "3"
+  # serviceAccount:
+  #   customAnnotations: 
+  #     argocd.argoproj.io/sync-wave: "3"
+  # clusterRole:
+  #   customAnnotations: 
+  #     argocd.argoproj.io/sync-wave: "3"
+  # clusterRoleBinding:
+  #   customAnnotations: 
+  #     argocd.argoproj.io/sync-wave: "3"
 provider:
   enabled: true
   customAnnotations: 
