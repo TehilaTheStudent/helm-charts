@@ -10,6 +10,7 @@ crossplane:
       argocd.argoproj.io/sync-wave: "1"
 
 rbac:
+  enabled: false
   job:
     customAnnotations: 
       argocd.argoproj.io/hook: Sync

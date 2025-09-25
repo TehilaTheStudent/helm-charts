@@ -1,3 +1,4 @@
+{{- if .Values.rbac.enabled }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -66,3 +67,4 @@ roleRef:
   kind: ClusterRole
   name: crossplane-crd-waiter
   apiGroup: rbac.authorization.k8s.io
+{{- end }}
