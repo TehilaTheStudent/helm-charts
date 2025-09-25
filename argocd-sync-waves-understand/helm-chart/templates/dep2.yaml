@@ -26,8 +26,8 @@ spec:
             - sh
             - -c
             - |
-              echo "Checking if dep1 deployment exists..."
-              kubectl get deployment dep1 
+              echo "Checking if dep1 deployment is ready..."
+              kubectl get deployment dep1 -o jsonpath='{.status.readyReplicas}' | grep -q '^[1-9]' 
           initialDelaySeconds: 5
           periodSeconds: 5
           failureThreshold: 1
@@ -36,13 +36,13 @@ spec:
         command: ["sh", "-c"]
         args:
         - |
-          echo "Checking if dep1 deployment exists..."
-          if kubectl get deployment dep1; then
-            echo "dep1 deployment found! Starting main container..."
+          echo "Checking if dep1 deployment is ready..."
+          if kubectl get deployment dep1 -o jsonpath='{.status.readyReplicas}' | grep -q '^[1-9]'; then
+            echo "dep1 deployment is ready! Starting main container..."
             # Keep container running
             tail -f /dev/null
           else
-            echo "dep1 deployment not found, exiting..."
+            echo "dep1 deployment is not ready, exiting..."
             exit 1
           fi
 {{- end }}

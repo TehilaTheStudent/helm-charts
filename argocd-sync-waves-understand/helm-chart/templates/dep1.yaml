@@ -21,7 +21,7 @@ spec:
         - containerPort: 80
         startupProbe:
           exec:
-            command: [ "sh", "-c", "sleep 10" ]  # Simulates a delay
+            command: [ "sh", "-c", "sleep 30" ]  # Simulates a delay
           periodSeconds: 5         # Check every 5 seconds
           failureThreshold: 1      # Fail immediately if not ready
           timeoutSeconds: 15    # Allow probe to run up to 25 seconds
