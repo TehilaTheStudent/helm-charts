@@ -12,6 +12,7 @@ crossplane:
 rbac:
   job:
     customAnnotations: 
+      argocd.argoproj.io/hook: Sync
       argocd.argoproj.io/sync-wave: "3"
   serviceAccount:
     customAnnotations: 
