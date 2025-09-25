@@ -4,4 +4,7 @@ crossplane:
   #     - xpkg.upbound.io/crossplane-contrib/provider-gitlab:v0.13.0
   customAnnotations: 
     argocd.argoproj.io/sync-wave: "-1"
-    
+
+  serviceAccount:  
+    customAnnotations: 
+      argocd.argoproj.io/sync-wave: "-2"
