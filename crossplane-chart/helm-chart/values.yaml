@@ -23,3 +23,7 @@ rbac:
   clusterRoleBinding:
     customAnnotations: 
       argocd.argoproj.io/sync-wave: "3"
+provider:
+  enabled: true
+  customAnnotations: 
+    argocd.argoproj.io/sync-wave: "10"
