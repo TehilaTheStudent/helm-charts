@@ -2,7 +2,7 @@ apiVersion: pkg.crossplane.io/v1beta1
 kind: Provider
 metadata:
   name: gitlab
-  annotations:
-    argocd.argoproj.io/sync-wave: "3"
+  # annotations:
+  #   argocd.argoproj.io/sync-wave: "3"
 spec:
   package: xpkg.upbound.io/crossplane-contrib/provider-gitlab:v0.13.0
