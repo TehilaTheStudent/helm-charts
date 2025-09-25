@@ -3,9 +3,7 @@ kind: Job
 metadata:
   name: wait-for-crossplane-crds
   annotations:
-{{- with .Values.rbac.job.customAnnotations }}
-{{ toYaml . | nindent 4 }}
-{{- end }}
+
     argocd.argoproj.io/hook: Sync
 spec:
   template:

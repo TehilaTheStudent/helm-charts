@@ -3,6 +3,7 @@ apiVersion: pkg.crossplane.io/v1beta1
 kind: Provider
 metadata:
   name: gitlab
+  annotations:
 {{- with .Values.provider.customAnnotations }}
 {{ toYaml . | nindent 4 }}
 {{- end }}
