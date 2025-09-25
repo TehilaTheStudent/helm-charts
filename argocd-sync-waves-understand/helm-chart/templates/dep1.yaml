@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep1
+  labels:
+    app: dep1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dep1
+  template:
+    metadata:
+      labels:
+        app: dep1
+    spec:
+      containers:
+      - name: nginx
+        image: {{ .Values.dep1.image }}
+        ports:
+        - containerPort: 80
+        startupProbe:
+          exec:
+            command: [ "sh", "-c", "sleep 10" ]  # Simulates a delay
+          periodSeconds: 5         # Check every 5 seconds
+          failureThreshold: 1      # Fail immediately if not ready
+          timeoutSeconds: 15    # Allow probe to run up to 25 seconds

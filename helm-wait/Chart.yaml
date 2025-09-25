@@ -1,0 +1,5 @@
+apiVersion: v2
+name: simple-wait-app
+description: Simple app to demonstrate helm --wait
+version: 1.0.0
+appVersion: "1.0"

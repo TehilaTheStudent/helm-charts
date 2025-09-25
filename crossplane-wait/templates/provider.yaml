@@ -1,0 +1,8 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: gitlab
+  annotations:
+    "helm.sh/hook": post-install
+spec:
+  package: xpkg.upbound.io/crossplane-contrib/provider-gitlab:v0.13.0

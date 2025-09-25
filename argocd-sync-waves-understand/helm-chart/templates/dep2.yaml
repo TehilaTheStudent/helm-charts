@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep2
+  labels:
+    app: dep2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dep2
+  template:
+    metadata:
+      labels:
+        app: dep2
+    spec:
+      containers:
+      - name: nginx
+        image: {{ .Values.dep2.image }}
+        ports:
+        - containerPort: 80
+# this deployment cheks if dep1 exists in cluster
+        startupProbe:
+            exec:
+                command: ["kubectl", "get", "deployment", "dep1"]
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 1

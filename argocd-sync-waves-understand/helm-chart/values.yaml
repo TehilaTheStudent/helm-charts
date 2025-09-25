@@ -1,0 +1,6 @@
+replicas: 2
+dep1:
+  image: nginx:1.21
+dep2:
+  image: bitnami/kubectl:latest
+
