@@ -4,5 +4,7 @@ metadata:
   name: gitlab
   annotations:
     "helm.sh/hook": post-install
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
 spec:
   package: xpkg.upbound.io/crossplane-contrib/provider-gitlab:v0.13.0

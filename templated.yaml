@@ -1037,7 +1037,7 @@ metadata:
   name: gitlab
   annotations:
 
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+      argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "10"
 spec:
   package: xpkg.upbound.io/crossplane-contrib/provider-gitlab:v0.13.0
